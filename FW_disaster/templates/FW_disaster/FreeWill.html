@@ -1,0 +1,54 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    調査1
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        以下の質問について，最もあてはまる(最も近い)選択肢を選んでください．
+    </p>
+    {% formfield player.crt_HAP %}
+    {% formfield player.crt_1st %}
+    {% formfield player.crt_2nd %}
+    {% formfield player.crt_3rd %}
+    {% formfield player.crt_sup %}
+    <p>
+      以下の項目についてあてはまるものを選んでください．<br>
+      どれが正しい答えということはないので，あまり深く考えずにありのままの姿を答えください．
+    </p>
+    {% formfield player.FW1 %}
+    {% formfield player.FW2 %}
+    {% formfield player.FW3 %}
+    {% formfield player.FW4 %}
+    {% formfield player.FW5 %}
+    {% formfield player.FW6 %}
+    {% formfield player.FW7 %}
+    {% formfield player.FW8 %}
+    {% formfield player.FW9 %}
+    {% formfield player.FW10 %}
+    {% formfield player.FW11 %}
+    {% formfield player.FW12 %}
+    {% formfield player.FW13 %}
+    {% formfield player.FW14 %}
+    {% formfield player.FW15 %}
+    {% formfield player.FW16 %}
+    {% formfield player.FW17 %}
+    {% formfield player.FW18 %}
+    {% formfield player.FW19 %}
+    {% formfield player.FW20 %}
+    {% formfield player.FW21 %}
+    {% formfield player.FW22 %}
+    {% formfield player.FW23 %}
+    {% formfield player.FW24 %}
+    {% formfield player.FW25 %}
+    {% formfield player.FW26 %}
+    {% formfield player.FW27 %}
+
+{% next_button %}
+
+
+
+{% endblock %}

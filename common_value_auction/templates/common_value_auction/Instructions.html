@@ -1,0 +1,62 @@
+{% load otree_tags staticfiles %}
+
+<div class="instructions well well-lg">
+
+    <h3 class="panel-sub-heading">
+        インストラクション／Instructions
+    </h3>
+    <p>
+        みなさんはランダムに他のプレイヤーとグループに割り振られます．
+        全てのプレイヤーは同じインストラクションを見ています．
+    </p>
+
+
+    <p>
+        You have been randomly and anonymously grouped with other players.
+        All players see these same instructions.
+    </p>
+
+    <p>
+        あなたの課題はオークションにかけられている商品を競り落とすことです．
+        この共通価値オークションゲームでは，プレイヤーはオークションにかけられている商品の購入を目指してもらいます．<br/>
+        競りの前に，各プレイヤーはその商品の価値の推定値が教えられます．この推定値はプレイヤーによって異なるかもしれません．
+        実際のその商品の価値は，全てのプレイヤーにとって共通であり，競りが終わった後に公開されます．
+    </p>
+
+
+
+    <p>
+        Your task will be to bid for an item that is being auctioned.
+        Prior to bidding, each player will be given an estimate of the actual
+        value of the item. The estimates may be different between players.
+        The actual value of the item, which is common to all players, will be
+        revealed after the bidding has taken place.
+    </p>
+
+    <p>
+        価値の推定値に基づいて，プレイヤーは設定された提案価格の上限と下限の中から，提案価格を決めてもらいます．
+        全ての提案価格は公開されずに，同時に登録されます．
+    </p>
+
+    <p>
+        Based on the value estimate, each player will submit a single bid
+        within a given range.
+        All bids are private and submitted at the same time.
+    </p>
+
+    <p>
+        最も高い競り値を提示した人が実際の価値-提案価格を受け取ることができます．
+        もし，競り落とした人が実際の価値よりも高い価格で競り落とした場合には，利得は0になります．
+        もし，2人ないしは複数のプレイヤーが同じ価格を提案した場合には，競り落とす人はランダムに決められて，他のプレイヤーは何も得られません．
+    </p>
+
+
+    <p>
+        The highest bidder will receive the actual value of the item as payoff
+        minus their own bid amount.
+        If the winner's bid amount is higher than the actual value of the item,
+        the payoff will be zero.
+        In the event of a tie between two or more players, the winner will be
+        chosen at random. Other players will receive nothing.
+    </p>
+</div>

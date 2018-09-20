@@ -1,0 +1,39 @@
+
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    調査3
+{% endblock %}
+
+{% block content %}
+<!--／Survey-->
+    <p>
+        以下の質問について，最もあてはまる(最も近い)選択肢を選んでください．<br>
+        最後の調査項目です．
+    </p>
+
+<!--
+    <p>
+        Please answer the following questions.
+    </p>
+-->
+    {% formfield player.q_gender %}
+    {% formfield player.q_age %}
+    {% formfield player.q_country %}
+    {% formfield player.q_aca %}
+    {% formfield player.q_INK %}
+    {% formfield player.q_INS %}
+    {% formfield player.q_MAR %}
+    {% formfield player.q_CHI %}
+
+
+
+
+    {% next_button %}
+
+
+
+{% endblock %}
+
+

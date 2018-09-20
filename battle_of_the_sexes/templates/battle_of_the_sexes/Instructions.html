@@ -1,0 +1,96 @@
+{% load otree_tags staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'global/matrix.css' %}" />
+
+<div class="instructions well well-lg">
+
+    <h3 class="panel-sub-heading">
+        Instructions
+    </h3>
+    <!--
+            In this study, you will be paired randomly and anonymously with another participant. One of you will be
+        randomly designated Husband and the other will be designated Wife. Prior to making a decision, you will
+        learn your role.-->
+    
+    
+    <p>
+        この研究では，あなたはランダムに，誰だかわからないように他のプレイヤーとペアになります．
+        そのうち，どちらかが男性役になり，どちらかが女性役になります．
+        意思決定を行う前に，まずはそれぞれの役割について学びましょう．
+    </p>
+
+    <!--
+        Both Husband and Wife have two choices for an evening’s entertainment. Each can either go to a football
+        match or to an opera. Husband prefers football and Wife prefers opera; however, to both it is more important
+        that they go out together than that each see the preferred entertainment.
+
+    -->
+    <p>
+        男性と女性は今晩の過ごし方について，それぞれ2つの選択肢の中から選ぶことができます．
+        1つの選択肢はサッカーを観に行くことであり，もう1つの選択肢はオペラを観に行くことです．
+        男性はサッカーを好み，女性はオペラを好みます．しかしながら，2人にとってより大事なのは，
+        バラバラに観に行くことではなく，一緒に同じものを観に行くことです．
+    </p>
+
+    <!--
+        Each of you must independently and simultaneously make a decision. Your payoffs will be determined by both
+        choices as shown below:
+    -->
+    
+    
+    <p>
+        それぞれ独立に，そして同時に意思決定を行ないます．あなたの利得は以下に示されたとおりに決められます．
+    </p>
+
+    <!--
+            <em>In each cell, the amount (in points) to the left is the payoff for Wife and to the right for Husband.</em>
+
+    -->
+    
+    
+    
+    <!--
+    Un each cell, the amount (in points) to the left is the payoff for Wife and to the right for Husband.
+    -->
+    <p>
+        <em>各マスにはそれぞれ男性と女性の利得が示されています．左側が女性の利得であり，右側が男性の利得です．</em>
+
+    </p>
+
+    <div class="row">
+        <div class="col-md-7 col-md-offset-2">
+            <table class="table table-hover">
+                <tr>
+                    <th colspan="2"></th>
+                    <th colspan="2">Husband</th>
+                </tr>
+                <tr>
+                    <th colspan="2"></th>
+                    <th>Football</th>
+                    <th>Opera</th>
+                </tr>
+                <tr>
+                    <th rowspan="2"><span class="rotate90">Wife</span> </th>
+                    <th>Football</th>
+                    <td>{{ Constants.football_wife_payoff }}, {{ Constants.football_husband_payoff }}</td>
+                    <td>{{ Constants.mismatch_payoff }}, {{ Constants.mismatch_payoff }} </td>
+                </tr>
+                <tr>
+                    <th>Opera</th>
+                    <td>{{ Constants.mismatch_payoff }}, {{ Constants.mismatch_payoff }}</td>
+                    <td>{{ Constants.opera_husband_payoff }}, {{ Constants.opera_wife_payoff }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    
+    <!--
+    For your convenience, these instructions will remain available to you on all subsequent screens of this study.
+    -->
+    
+    <p>
+         わかりやすいように，これらのインストラクションはこの実験の間，ずっと画面上に残しておきます．
+    </p>
+
+</div>

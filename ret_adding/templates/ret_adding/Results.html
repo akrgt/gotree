@@ -1,0 +1,50 @@
+
+{% extends "global/BaseMotherhood.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    結果の概要
+{% endblock %}
+
+{% block content %}
+
+    <p class="text-success">
+    </p>
+
+    <div class="panel panel-success">
+
+        <div class="panel-heading">
+            <h4>Your score on task 1: {{ total_payoff }}</h4>
+        </div>
+
+        <table class="table">           
+            <tr>
+                <th><center>Round No.</th>
+                <th><center>数式</th>
+                <th><center>回答</th>
+                <th><center>あなたの回答</th>
+                <th><center>正解／不正解</th>
+                <th><center>スコア</th>
+            </tr>
+            {% for row in table_rows %}
+            <tr>
+                <td align="center">{{ row.round_number }}</td>
+                <td align="center">{{ row.int1 }} + {{ row.int2 }}</td>
+                <td align="center">{{ row.Ints_sum }}</td>
+                <td align="center">{{ row.player_sum }}</td>
+                <td align="center">{{ row.is_correct }}</td>
+                <td align="center">{{ row.payoff }}</td>
+            </tr>
+            {% endfor %}
+
+        </table>
+
+        <div class="panel-heading">
+            もし，最後の課題で "<b>False</b>" の文字が表示されており，正解しているにもかかわらず0ポイントだった場合は，時間切れだったことを示しています．
+        </div>
+
+    </div>
+
+    {% next_button %}<br><br><br>
+
+{% endblock %}

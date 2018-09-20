@@ -1,0 +1,66 @@
+{% extends "global/Base.html" %}
+{% load otree_tags %}
+{% block title %}Results{% endblock %}
+{% block content %}
+
+   <table class=table style='width: auto'>
+        <tr>
+            <th></th>
+            <th>ポイント</th>
+        </tr>
+        <tr>
+            <td>あなたの評価額</td>
+            <td>{{ player.claim }}</td>
+        </tr>
+        <tr>
+            <td>他のプレイヤーの評価額</td>
+            <td>{{ player.other_player.claim }}</td>
+        </tr>
+        <tr>
+            <td>勝った評価額（低い評価額）</td>
+            <td>{{ group.lower_claim }}</td>
+        </tr>
+        <tr>
+            <td>あなたへの追加額／罰金</td>
+            <td>{{ player.adjustment }}</td>
+        </tr>
+        <tr>
+            <td>あなたが受け取る金額</td>
+            <td>{{ player.payoff }}</td>
+        </tr>
+
+    </table>
+
+
+
+    <table class=table style='width: auto'>
+        <tr>
+            <th></th>
+            <th>Points</th>
+        </tr>
+        <tr>
+            <td>You claimed</td>
+            <td>{{ player.claim }}</td>
+        </tr>
+        <tr>
+            <td>The other traveler claimed</td>
+            <td>{{ player.other_player.claim }}</td>
+        </tr>
+        <tr>
+            <td>Winning claim (i.e. lower claim)</td>
+            <td>{{ group.lower_claim }}</td>
+        </tr>
+        <tr>
+            <td>Your adjustment</td>
+            <td>{{ player.adjustment }}</td>
+        </tr>
+        <tr>
+            <td>Thus you receive</td>
+            <td>{{ player.payoff }}</td>
+        </tr>
+
+    </table>
+
+    <p>{% next_button %}</p>
+    {% include Constants.instructions_template %}
+{% endblock %}

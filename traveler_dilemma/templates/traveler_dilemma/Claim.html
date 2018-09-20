@@ -1,0 +1,16 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    骨董品の価値を評価する／Claim
+{% endblock %}
+
+{% block content %}
+<p>あなたは自身の骨董品はいくらくらいだと思いますか？</p>
+<p>How many points will you claim for your antique?</p>
+    {% formfield player.claim %}
+    {% next_button %}
+    
+    {% include Constants.instructions_template %}
+
+{% endblock %}

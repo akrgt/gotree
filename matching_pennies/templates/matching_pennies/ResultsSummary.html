@@ -1,0 +1,49 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    最終結果／Final results
+{% endblock %}
+
+{% block content %}
+
+    <table class="table">
+        <tr>
+            <th>期</th>
+            <th>プレイヤーと利得</th>
+        </tr>
+        {% for p in player_in_all_rounds %}
+            <tr>
+                <td>{{ p.subsession.round_number }}</td>
+                <td>あなたの役割は {{ p.role }}です．{% if p.is_winner %} あなたの勝ちです． {% else %} あなたの負けです． {% endif %}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+
+    <table class="table">
+        <tr>
+            <th>Round</th>
+            <th>Player and outcome</th>
+        </tr>
+        {% for p in player_in_all_rounds %}
+            <tr>
+                <td>{{ p.subsession.round_number }}</td>
+                <td>You were the {{ p.role }} and {% if p.is_winner %} won {% else %} lost {% endif %}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <p>
+        支払いをする期は {{ paying_round }}です．
+        したがって，あなたの利得は{{ total_payoff }}です．
+    </p>
+
+
+    <p>
+        The paying round was {{ paying_round }}.
+        Your total payoff is therefore {{ total_payoff }}.
+    </p>
+
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% load otree_tags staticfiles %}
+
+<div class="instructions well well-lg">
+
+    <h3 class="panel-sub-heading">
+        インストラクション／Instructions
+    </h3>
+
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'global/matrix.css' %}"/>
+
+    <p>
+
+        この実験では，あなたは全く知らない他の実験参加者と2人組になってもらいます．
+        ここでは，各自が協力したいか否（裏切る）かを選択してもらいます．
+        あなたの利得は，以下の表にもとづいて決められます．
+        なお，このゲームは同じ相手と10回繰り返されます．
+    </p>
+
+    <p>
+        In this study, you will be randomly and anonymously paired with another
+        participant.
+        Each of you simultaneously and privately chooses whether you want to
+        cooperate or defect.
+        Your payoffs will be determined by the choices of both as below:
+        Especially, you will try this game in 10 times.
+    </p>
+    <p><i>それぞれのセルにおいて，左側はあなたが得られる利得を示し，
+    右側は相手が得られる利得を示しています．</i></p>
+    <p><i>In each cell, the amount (in points) to the left is the payoff for
+        you and to the right for the other participant.</i></p>
+
+
+    <table class='table table-bordered text-center'
+           style='width: auto; margin: auto'>
+        <tr>
+            <th colspan=2 rowspan=2></th>
+            <th colspan=2>他の実験参加者／The Other Participant</th>
+        </tr>
+        <tr>
+            <th>協力／Cooperate</th>
+            <th>裏切り／Defect</th>
+        </tr>
+        <tr>
+            <th rowspan=2><span class="rotate90">あなた／You</span></th>
+            <th>協力／Cooperate</th>
+            <td>{{ Constants.both_cooperate_payoff }}, {{ Constants.both_cooperate_payoff }}</td>
+            <td>0 ポイント, {{ Constants.betray_payoff }}</td>
+        </tr>
+        <tr>
+            <th>裏切り／Defect</th>
+            <td>{{ Constants.betray_payoff }}, 0 ポイント</td>
+            <td>{{ Constants.both_defect_payoff }}, {{ Constants.both_defect_payoff }}</td>
+        </tr>
+    </table>
+
+</div>

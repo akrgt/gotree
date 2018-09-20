@@ -1,0 +1,29 @@
+{% extends "global/Base.html" %}
+{% load otree_tags %}
+
+{% block title %}あなたの意思決定{% endblock %}
+
+{% block content %}
+
+<p>
+    あなたは <strong>プレイヤー 1</strong>です．何ポイントを自分自身のものとするか，意思決定を下してください．
+</p>
+<!--
+<p>
+You are <strong>Participant 1</strong>. Now please decide how many points you will keep for yourself.
+</p>
+-->
+
+<div>
+    <ul>
+        {% formfield group.kept %}
+    </ul>
+
+</div>
+
+
+{% next_button %}
+
+    {% include Constants.instructions_template %}
+
+{% endblock %}

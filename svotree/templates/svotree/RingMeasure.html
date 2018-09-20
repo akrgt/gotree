@@ -1,0 +1,59 @@
+{% extends "svotree/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+回答画面
+{% endblock %}
+
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-default">
+                     <div class="panel-heading"><strong>以下について決定をして下さい．</strong></div>
+                     <div class="panel-body">
+                        <div class="row">
+                            {% for decision in ring_measure_decisions %}
+                            <div class="col-sm-4 tdm-item">
+                                <table>
+                                    <tr>
+                                        <th class="rm-cell">{{ decision.number }}</th>
+                                        <th class="rm-cell rm-choice"><strong>A</strong></th>
+                                        <th class="rm-cell rm-choice"><strong>B</strong></th>
+                                    </tr>
+                                    <tr>
+                                        <td class="rm-cell"><strong><!--You receive：-->あなたの取り分</strong></td>
+                                        <td class="rm-cell rm-choice">{{ decision.A.self }}</td>
+                                        <td class="rm-cell rm-choice">{{ decision.B.self }}</td>
+                                    </tr>                                    <tr>
+                                    <td class="rm-cell"><strong><!--Other receive：-->「誰か」の取り分</strong></td>
+                                    <td class="rm-cell rm-choice">{{ decision.A.other }}</td>
+                                    <td class="rm-cell rm-choice">{{ decision.B.other }}</td>
+                                </tr>
+                                    <tr>
+                                        <td class="rm-cell"></td>
+                                        <td class="rm-cell rm-choice"><input type="radio" name="nine_item_rm_{{ decision.number }}" value="A" /></td>
+                                        <td class="rm-cell rm-choice"><input type="radio" name="nine_item_rm_{{ decision.number }}" value="B" /></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            {% endfor %}
+                        </div>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn btn-primary btn-large" id="continue_button" ><!--Continue-->次へ</button>
+
+
+    {% include Constants.instructions_rm %}
+
+
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

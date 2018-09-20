@@ -1,0 +1,30 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    あなたの予想／Your Guess
+{% endblock %}
+
+{% block content %}
+
+    {% if player.round_number > 1 %}
+        <p>
+            ここには前の期における全体の2/3の値を表示しています．
+            {{ group.two_thirds_avg_history }}
+        </p>
+    {% endif %}
+
+
+    {% if player.round_number > 1 %}
+        <p>
+            Here were the two-thirds-average values in previous rounds:
+            {{ group.two_thirds_avg_history }}
+        </p>
+    {% endif %}
+
+    {% formfield player.guess with label="0から100の間の数字を選んで下さい．" %}
+    {% next_button %}
+
+    {% include Constants.instructions_template %}
+
+{% endblock %}

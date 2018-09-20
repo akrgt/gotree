@@ -1,0 +1,60 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        {% if player.is_winner %}
+            あなたが競り落としました！
+            {% if is_greedy %}
+                しかし，あなたの競り落とした価格は，その実際の価値よりも高く競り落としてしまいました．したがって，あなたの利得はゼロです．
+            {% elif player.payoff == 0 %}
+                しかし，あなたの利得はゼロです．
+            {% endif %}
+        {% else %}
+            あなたは競り落とせませんでした．
+        {% endif %}
+    </p>
+
+
+
+    <p>
+        {% if player.is_winner %}
+            You won the auction!
+            {% if is_greedy %}
+                However, your bid amount was higher than the actual value of the item. Your payoff is therefore zero.
+            {% elif player.payoff == 0 %}
+                Your payoff, however, is zero.
+            {% endif %}
+        {% else %}
+            You did not win the auction.
+        {% endif %}
+    </p>
+
+    <table class="table" style="width:400px">
+
+        <tr>
+            <th>あなたの提案額／Your bid</th>
+            <th>競り落とされた価格／Winning bid</th>
+            <th>実際の価値／Actual value</th>
+            <th>あなたの利得／Your payoff</th>
+        </tr>
+
+
+
+    <tr>
+        <td>{{ player.bid_amount }}</td>
+        <td>{{ group.highest_bid }}</td>
+        <td>{{ group.item_value }}</td>
+        <td>{{ player.payoff }}</td>
+    </tr>
+
+    </table>
+
+    {% next_button %}
+
+{% endblock %}

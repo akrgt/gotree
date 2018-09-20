@@ -1,0 +1,14 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Page title
+{% endblock %}
+
+{% block content %}
+<p>you have 10 gold coins, you can offer 0, 5 or 10 of your coins to a random player you have been pired with.</p>
+ {% formfield group.offered_coins with label="How many coins would you like to offer?" %}
+
+    {% next_button %}
+
+{% endblock %}

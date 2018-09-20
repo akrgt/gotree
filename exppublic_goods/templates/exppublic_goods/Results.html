@@ -1,0 +1,50 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    結果
+{% endblock %}
+
+
+
+{% block content %}
+  
+
+    <table class="table-condensed" style="width:500px; margin-top:20px;">
+        <tr><td>あなたの支払ポイント:</td><td>{{ player.contribution }}</td></tr>
+        <!--- <tr><td>あなたの貢献ポイント／You contributed:</td><td>{{ player.contribution }}</td></tr> --->
+        <tr><td>他のメンバーの支払ポイント:</td><td></td></tr>
+        <!--- <tr><td>他のプレイヤーのポイント／Other participants contributed:</td><td></td></tr> --->
+        {% for p in player.get_others_in_group %}
+            <tr><td></td><td>{{ p.contribution }}</td></tr>
+        {% endfor %}
+
+        <tr><td>メンバー全員の支払ポイントの合計:</td><td>{{ group.total_contribution }}</td></tr>
+        <!--- <tr><td>総貢献ポイント／Total contribution:</td><td>{{ group.total_contribution }}</td></tr>--->
+        <tr><td colspan="2"><hr/></td></tr>
+
+        <tr><td>メンバー全員の支払から生まれたポイント:</td><td>{{ total_earnings }}</td></tr>
+       <!---  <tr><td>このプロジェクトから算出されたポイント／Total earnings from the project:</td><td>{{ total_earnings }}</td></tr> --->
+
+        <tr><td>あなたが得たポイント:</td><td>{{ group.individual_share }}</td></tr>
+       <!---  <tr><td>あなたがこのプロジェクトから得られたポイント／Your earnings from the project:</td><td>{{ group.individual_share }}</td></tr> --->
+        <tr><td colspan="2"><hr/></td></tr>
+
+        <tr><td><span style="color:#ff0000;font-size: large;">あなたのポイント:</span></td><td><span style="color:#ff0000;font-size: large;">{{ player.payoff }}</span></td></tr>
+        <!--- <tr><td>あなたが得たポイント／Thus in total you earned:</td><td>{{ player.payoff }}</td></tr>--->
+
+
+    </table>
+    <p></p>
+
+    {% formfield player.HAPPINESS %}
+
+
+
+    {% next_button %}
+
+
+    {% include Constants.instructions_template %}
+
+
+{% endblock %}

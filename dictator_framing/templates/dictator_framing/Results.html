@@ -1,0 +1,30 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    結果
+{% endblock %}
+
+{% block content %}
+    <p>
+
+        {% if player.id_in_group == 1 %}
+            あなたは<strong>{{ group.kept }}</strong> を自分の利益としました．<br>
+            したがって，プレイヤー2の利益は<strong>{{ offer }}</strong>です．
+        <!--
+        ／You decided to keep <strong>{{ group.kept }}</strong> for yourself.
+        -->
+        {% else %}
+            あなたは<strong>プレイヤー2</strong>に割り振られました．<br>
+            プレイヤー1は<strong>{{ group.kept }}</strong>を自分の利益としました．<br>
+            したがって，あなたの利益は<strong>{{ offer }}</strong>です．
+         <!--
+            Participant 1 decided to keep <strong>{{ group.kept }}</strong>, so
+            you got <strong>{{ offer }}</strong>.
+        -->
+        {% endif %}
+
+        {% next_button %}
+    </p>
+    {% include Constants.instructions_template %}
+{% endblock %}

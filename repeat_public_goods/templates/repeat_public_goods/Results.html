@@ -1,0 +1,44 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block content %}
+  
+
+    <table class="table-condensed" style="width:500px; margin-top:20px;">
+        <tr><td>あなたの貢献ポイント:</td><td>{{ player.contribution }}</td></tr>
+        <tr><td>他のプレイヤーのポイント:</td><td></td></tr>
+        {% for p in player.get_others_in_group %}
+            <tr><td></td><td>{{ p.contribution }}</td></tr>
+        {% endfor %}
+
+        <tr><td>総貢献ポイント:</td><td>{{ group.total_contribution }}</td></tr>
+
+        <tr><td colspan="2"><hr/></td></tr>
+
+        <tr><td>このゲームから算出された総ポイント:</td><td>{{ total_earnings }}</td></tr>
+
+        <tr><td>あなたがこのゲームから得られたポイント:</td><td>{{ group.individual_share }}</td></tr>
+
+        <tr><td colspan="2"><hr/></td></tr>
+
+        <tr><td><span style="color:#ff0000;font-size: large;">あなたのポイント:</span></td><td><span style="color:#ff0000;font-size: large;">{{ player.payoff }}</span></td></tr>
+        <!--- <tr><td>あなたが得たポイント／Thus in total you earned:</td><td>{{ player.payoff }}</td></tr>--->
+
+
+        <tr><td><span style="color:#ff0000;font-size: large;">あなたのポイントの獲得した合計:</span></td><td><span style="color:#ff0000;font-size: large;">{{ total_payoffs }}</span></td></tr>
+        <!--- <tr><td>あなたが得たポイント／Thus in total you earned:</td><td>{{ player.payoff }}</td></tr>--->
+
+    </table>
+    <p></p>
+
+    {% next_button %}
+
+
+    {% include Constants.instructions_template %}
+
+
+{% endblock %}

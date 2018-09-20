@@ -1,0 +1,35 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    調査2
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        あなた自身のことについてお尋ねします．<br>
+        あなたが過去にあった経験のある災害について，どの程度の被害を受けたのかを教えてください．<br>
+        もし，被害にあった経験がなければ「経験したことはない」を選んでください．
+    </p>
+
+<!--
+    <p>
+        Please answer the following questions.
+    </p>
+-->
+    {% formfield player.DisasterExp_1 %}
+    {% formfield player.DisasterExp_2 %}
+    {% formfield player.DisasterExp_3 %}
+    {% formfield player.DisasterExp_4 %}
+    {% formfield player.DisasterExp_5 %}
+    {% formfield player.DisasterExp_6 %}
+    {% formfield player.DisasterExp_7 %}
+    {% formfield player.DisasterExp_8 %}
+    {% formfield player.DisasterExp_9 %}
+
+    {% next_button %}
+
+
+
+{% endblock %}

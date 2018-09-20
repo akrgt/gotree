@@ -1,0 +1,33 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+<!--
+    Your Choice
+-->
+    あなたの選択
+{% endblock %}
+
+{% block content %}
+
+<!--
+    You are Participant A. Now you have {{Constants.amount_allocated}}. How many points will you send to participant B?
+-->
+
+    <p>
+    あなたはプレイヤーAです．あなたは今，{{Constants.amount_allocated}}ポイントを持っています．
+    あなたはプレイヤーBに何ポイント渡しますか？
+    </p>
+
+<!--
+Please enter a number from 0 to 100:
+-->
+
+    {% formfield group.sent_amount with label="0-100の数字を半角で入力して下さい:" %}
+    <p>
+    {% next_button %}
+    </p>
+
+    {% include Constants.instructions_template %}
+
+{% endblock %}

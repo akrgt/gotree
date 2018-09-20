@@ -1,0 +1,108 @@
+{% load otree_tags staticfiles %}
+
+<div class="instructions well well-lg">
+
+    <div>
+        <!--
+        <p>
+            In this task, imagine that you have been randomly paired with another person,
+            whom we will refer to as <strong>the other</strong>. This other person is someone you do not
+            know and will remain mutually anonymous. All of your choices are
+            completely confidential.<br>
+            You will be making a series of decisions about allocating resources between you
+            and this other person. For each of the following questions, please indicate the
+            distribution you prefer most by <strong>moving the slider along the scale
+            to your preferred payoff allocation</strong>.<br>
+            You can only make one selection for each question.
+        </p>
+        -->
+
+
+        <p>
+            この問題では，あなたが全く知らない誰かと2人組になっている状況を想定してください．<br>
+            以下には，その相手のことを<strong>「誰か」</strong>と表示します．<br>
+        </p>
+        <p>
+            ここでは，あなたと「誰か」の間でお金（ポイント）をどのように分けるのか意思決定をします．<br>
+            いずれの質問についても，どの配分の組み合わせがあなたにとって最も望ましいのか，
+            <strong>スライダーを動かすことによって，あなたと「誰か」の取り分を決定して下さい．</strong><br>
+        </p>
+    </div>
+
+    <div>
+        <!--
+        <p>Your decisions will yield money for both yourself and the other person.
+            In the example below, a person has chosen to distribute money so that he/she receives 50 points, while the anonymous other person receives 40 points.
+        </p>
+        -->
+        <p>
+            あなたの意思決定によって，あなた自身と「誰か」にポイントを分けることになるとします．<br>
+            下の例では，意思決定をしたある人が50ポイントを受け取り，「誰か」は40ポイントを受け取るように
+            分配した状況を示しています．
+        </p>
+    </div>
+
+    <div>
+        <!--
+        <p>
+            There are no right or wrong answers, this is all about personal preferences. After you have made
+            your decision, <strong>make it final by pressing the Confirm button to the right of the scale.</strong>
+            As you can see, your choices will influence both the amount of points you receive and the
+            amount of points the other receives. When you have made all your decisions, <strong>press the Continue
+            button at the bottom of the screen</strong> to complete this decision task.
+        </p>
+        -->
+        <p>
+            この問題に対して正解も間違いもありません．あなたがスライダーを動かして分配額を決めた後，
+            <strong>右側にある「確認」ボタンを必ず押して下さい．</strong>
+            あなたの意思決定にしたがって，あなた自身が受け取るポイントと，「誰か」が受け取るポイントが決まります．<br>
+        </p>
+
+        <p>
+            全てを決め終えた後，<strong>画面の下にある「続ける」ボタンを必ず押して下さい．</strong><br>
+            そうすると，次の画面に進みます．<br>
+            なお，このインストラクションは，回答画面では下部に表示しています．もし，わからないことがあれば適宜ご確認ください．
+        </p>
+    </div>
+
+        <div class="panel-body" style="margin-top: 2em; margin-bottom: 2em; border: 1px solid #ddd">
+       <div class="row"">
+           <div class="col-sm-2" align="center"><strong><!--EXAMPLE：-->例</strong></div>
+           <div class="col-sm-1"></div>
+           <div class="col-sm-7"></div>
+           <div class="col-sm-2"></div>
+       </div>
+       <div class="row">
+           <div class="col-sm-2" align="center"><!--You Receive：-->あなたの取り分</div>
+           <div class="col-sm-1" align="center"><span class="slider-value">50</span></div>
+           <div class="col-sm-7"><div class="slider-reference"><div class="value-start">30</div><div class="value-end">70</div></div></div>
+           <div class="col-sm-2"></div>
+       </div>
+       <div class="row">
+           <div class="col-sm-2" align="center"></div>
+           <div class="col-sm-1" align="center"></div>
+            {% if type == "discrete" %}
+           <div class="col-sm-7 slider-horizontal-col"><input id="example" type="text" data-slider-tooltip="hide" data-slider-min="1" data-slider-max="9" data-slider-step="1" data-slider-ticks="[1, 2, 3, 4, 5, 6, 7, 8, 9]" data-slider-value=5 data-slider-enabled="false" /></div>
+            {% elif type == "continuous" %}
+            <div class="col-sm-7 slider-horizontal-col">
+                <input id="example" type="text" data-slider-tooltip="hide" data-slider-min="0" data-slider-max="100" data-slider-step="0.1" data-slider-value=50 data-slider-enabled="false"/>
+            </div>
+            {% endif %}
+           <div class="col-sm-2"><button type="button" class="btn btn-primary btn-large" disabled="True"><!--Confirm：-->確認</button></div>
+       </div>
+       <div class="row">
+           <div class="col-sm-2" align="center"><!--Other receives：-->誰かの取り分</div>
+           <div class="col-sm-1" align="center"><span class="slider-value"">40</span></div>
+           <div class="col-sm-7"><div class="slider-reference"><div class="value-start">80</div><div class="value-end">0</div></div></div>
+           <div class="col-sm-2"></div>
+        </div>
+    </div>
+</div>
+
+{% block scripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.5.3/bootstrap-slider.min.js"></script>
+    <script>
+    $("#example").slider({});
+    </script>
+
+{% endblock %}

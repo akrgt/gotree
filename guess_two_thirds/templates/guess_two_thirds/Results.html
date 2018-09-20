@@ -1,0 +1,63 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block content %}
+
+    <p>ここには推定値が表示されます．</p>
+
+    <p>Here were the numbers guessed:</p>
+
+    <p>
+        {{ sorted_guesses }}
+    </p>
+
+    <p>
+        全体の平均の2/3の値は {{ group.two_thirds_avg }}でした．
+        最も近い推定値は {{ group.best_guess }}です．
+    </p>
+
+    <p>
+        Two-thirds of the average of these numbers is {{ group.two_thirds_avg }};
+        the closest guess was {{ group.best_guess }}.
+    </p>
+
+    <p>あなたの推定値は {{ player.guess }}でした．</p>
+
+    <p>Your guess was {{ player.guess }}.</p>
+
+    <p>
+        {% if player.is_winner %}
+            {% if group.num_winners > 1 %}
+                したがって，あなたは最も近い値を推定した {{ group.num_winners }} 人の勝った人のうちの1人です．
+            {% else %}
+                したがって，あなたは勝ちました．
+            {% endif %}
+        {% else %}
+            したがって，あなたは負けました．
+        {% endif %}
+    あなたの利得は{{ player.payoff }}です．
+    </p>
+
+    <p>
+        {% if player.is_winner %}
+            {% if group.num_winners > 1 %}
+                Therefore, you are one of the {{ group.num_winners }} winners
+                who tied for the best guess.
+            {% else %}
+                Therefore, you win!
+            {% endif %}
+        {% else %}
+            Therefore, you did not win.
+        {% endif %}
+    Your payoff is {{ player.payoff }}.
+    </p>
+
+    {% next_button %}
+
+    {% include Constants.instructions_template %}
+
+{% endblock %}

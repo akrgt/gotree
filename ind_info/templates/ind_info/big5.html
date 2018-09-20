@@ -1,0 +1,33 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    調査3
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        １から 10 までのことばがあなた自身にどのくらい当てはまるかについて，<br>
+        下の枠内の１から７までの数字のうちもっとも適切なものを選んでください．<br>
+        文章全体を総合的に見て，自分にどれだけ当てはまるかを評価してください．
+    </p>
+
+
+    {% formfield player.big5_1 %}
+    {% formfield player.big5_2 %}
+    {% formfield player.big5_3 %}
+    {% formfield player.big5_4 %}
+    {% formfield player.big5_5 %}
+    {% formfield player.big5_6 %}
+    {% formfield player.big5_7 %}
+    {% formfield player.big5_8 %}
+    {% formfield player.big5_9 %}
+    {% formfield player.big5_10 %}
+
+
+    {% next_button %}
+
+
+
+{% endblock %}

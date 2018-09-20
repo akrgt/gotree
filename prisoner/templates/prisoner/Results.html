@@ -1,0 +1,29 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    結果
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        {% if same_choice %}
+            2人とも {{ my_decision }}を選びました．
+        {% else %}
+            あなたは {{ my_decision }}を選びました．そして，相手は {{ other_player_decision }}を選びました．
+        {% endif %}
+    </p>
+
+    <p>
+        その結果，あなたは {{ player.payoff }}を獲得しました．
+    </p>
+
+
+
+
+    {% next_button %}
+
+    {% include Constants.instructions_template %}
+
+{% endblock %}

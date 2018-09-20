@@ -1,0 +1,44 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Page title
+{% endblock %}
+
+{% block content %}
+
+<p>
+    あなたは最初に{{ Constants.endowment }}を持っていました．<br>
+    そのうち，あなたは{{ player.contribution }}を支払いました．<br>
+    あなたのグループでは合計で{{ group.total_contribution }}が貢献されました．<br>
+    各プレイヤーに{{ group.individual_share }}が支払われます．<br>
+    したがって，あなたは全額で{{ player.payoff }}を獲得しました．
+
+
+</p>
+
+
+Highcharts.chart('container', {
+
+
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle'
+    },
+
+    plotOptions: {
+        series: {
+            pointStart: 2010
+        }
+    },
+
+    series: {{ highcharts_series }}
+
+});
+
+
+    {% next_button %}
+{% endblock %}
+
+

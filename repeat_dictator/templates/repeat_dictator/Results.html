@@ -1,0 +1,23 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block content %}
+    <p>
+
+        {% if player.id_in_group == 1 %}
+            あなたは<strong>{{ group.kept }}</strong> を自分自身の手元に残しました．／You decided to keep <strong>{{ group.kept }}</strong> for yourself.
+        {% else %}
+            プレイヤー1は<strong>{{ group.kept }}</strong>をプレイヤー1の手元に残しました．
+            したがって，あなたは<strong>{{ offer }}</strong>ポイントを受け取ることになりました．／
+            Participant 1 decided to keep <strong>{{ group.kept }}</strong>, so
+            you got <strong>{{ offer }}</strong>.
+        {% endif %}
+
+        {% next_button %}
+    </p>
+    {% include Constants.instructions_template %}
+{% endblock %}

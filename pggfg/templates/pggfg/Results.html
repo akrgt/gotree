@@ -1,0 +1,12 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    結果  ({{ Constants.num_rounds }}期中{{ subsession.round_number }}期目)
+{% endblock %}
+
+{% block content %}
+
+    {% include 'pggfg/resultstable.html' %}
+    {% next_button %}
+{% endblock %}

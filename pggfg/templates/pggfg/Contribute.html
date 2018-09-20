@@ -1,0 +1,17 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    ステージ 1: 貢献額の決定  ({{ Constants.num_rounds }}期中{{ subsession.round_number }}期目)
+{% endblock %}
+
+{% block content %}
+
+    {% formfield player.contribution %}
+
+    {% next_button %}
+
+    {% include Constants.instructions_template %}
+
+    {{ block.super }}
+{% endblock %}

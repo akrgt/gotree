@@ -1,0 +1,49 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    調査2
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        あなた自身のことについてお尋ねします．<br>
+        以下の選択肢について，<strong>「全くあてはまらない」〜「非常にあてはまる」</strong>の5つの中から，最もあてはまるものを選んでください．
+    </p>
+
+<!--
+    <p>
+        Please answer the following questions.
+    </p>
+-->
+    {% formfield player.ratemo_1 %}
+    {% formfield player.ratemo_2 %}
+    {% formfield player.ratemo_3 %}
+    {% formfield player.ratemo_4 %}
+    {% formfield player.ratemo_5 %}
+    {% formfield player.ratemo_6 %}
+    {% formfield player.ratemo_7 %}
+    {% formfield player.ratemo_8 %}
+    {% formfield player.ratemo_9 %}
+    {% formfield player.ratemo_10 %}
+    {% formfield player.ratemo_11 %}
+    {% formfield player.ratemo_12 %}
+    {% formfield player.ratemo_13 %}
+    {% formfield player.ratemo_14 %}
+    {% formfield player.ratemo_15 %}
+    {% formfield player.ratemo_16 %}
+    {% formfield player.ratemo_17 %}
+    {% formfield player.ratemo_18 %}
+    {% formfield player.ratemo_19 %}
+    {% formfield player.ratemo_20 %}
+    {% formfield player.ratemo_21 %}
+    {% formfield player.ratemo_22 %}
+    {% formfield player.ratemo_23 %}
+    {% formfield player.ratemo_24 %}
+
+    {% next_button %}
+
+
+
+{% endblock %}

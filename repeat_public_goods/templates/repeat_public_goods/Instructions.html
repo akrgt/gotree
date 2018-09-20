@@ -1,0 +1,92 @@
+{% load otree_tags staticfiles %}
+
+<div class="instructions well well-lg">
+
+    <h3 class="panel-sub-heading">
+    <h3 class="panel-sub-heading">
+        インストラクション
+    </h3>
+
+    <div>
+        <span style="font-size: large;"><strong>実験の注意</strong></span>
+        <ul>
+            <li>あなたにはある環境を再現した実験に参加してもらいます． </li>
+            <li>あなたの得られるポイントは<strong>あなた及び他の人がどのような意思決定を行うか</strong>によって決まります．</li>
+            <li>あなたが最もよいと思う意思決定を下して下さい．．</li>
+        </ul>
+    </div>
+
+
+    <div>
+        <span style="font-size: large;"><strong>実験のルール</strong></span>
+        <ul>
+            <li>この実験では，あなたはランダムに{{ Constants.players_per_group }} 人のグループに割り振られます． </li>
+            <li>グループの各メンバーには，最初に {{ Constants.endowment }}を与えられます．</li>
+            <li>他の人といくら分け合うか，支払ポイントを決めてください．</li>
+            <li>その支払ポイントは，0ポイントから{{ Constants.endowment }}の間で決めることができます．</li>
+            <li><strong>このゲームは{{ Constants.num_rounds }}回繰り返します．</strong></li>
+        </ul>
+    </div>
+
+<!---
+    <p>         In this study, you will be in a randomly formed group
+        of {{ Constants.players_per_group }} participants. Each participant in
+        the group is given {{ Constants.endowment }}. The group
+        has the opportunity to undertake a joint project. Each participant in
+        the group decides how much she or he is going to contribute to
+        the project. Contribution could be any integer from 0
+        to {{ Constants.endowment }}.
+    </p>
+    '''
+--->
+
+    <div>
+        <span style="font-size: large;"><strong>実験のルール</strong></span>
+    <p>
+        この実験から得られる利益は，以下の通りに計算されます:
+    </p>
+    </div>
+
+
+    <div>
+        <ul>
+            <li><strong> 戻ってくるポイント = （グループメンバーの支払ったポイントの合計）× {{ Constants.efficiency_factor }} ÷ {{ Constants.players_per_group }}人</strong> </li>
+            <li><strong>あなたのポイント = 戻ってくるポイント + 支払わなかったポイント</strong></li>
+        </ul>
+    </div>
+
+
+    <div>
+       上の数式について説明します．<br>
+        <ul>
+            <li>最初に，{{ Constants.players_per_group }}人の支払ポイントを全て合計します．</li>
+            <li>つづいて，その貢献ポイントの合計は{{ Constants.efficiency_factor }}倍にします．</li>
+            <li>その{{ Constants.efficiency_factor }}倍されたポイントは {{ Constants.players_per_group }}人のグループメンバー全員に均等に分配されます．</li>
+            <li>したがって，あなたのポイントは分配されたポイントと，支払わなかったポイントの合計になります．</li>
+        </ul>
+    </div>
+
+    <div>
+        <span style="font-size: large;"><strong>画面の表示</strong></span>
+        <ul>
+            <li>なお，このインストラクションは常に画面の下部に表示してきます． </li>
+            <li>もし，わからないことがあれば，このインストラクションを随時確認してください．</li>
+        </ul>
+    </div>
+
+
+
+<!---
+    <p>        The earnings from the project are calculated as follows: The
+        contributions of all {{ Constants.players_per_group }} participants are
+        added up, the total contribution
+        is multiplied by a factor of {{ Constants.efficiency_factor }}, and the
+        resulting amount is the total earnings from the project, which is
+        evenly split among all {{ Constants.players_per_group }}
+        participants. Your payoff equals your earnings from the project, plus
+        the amount you did not contribute.
+    </p>
+--->
+
+
+</div>

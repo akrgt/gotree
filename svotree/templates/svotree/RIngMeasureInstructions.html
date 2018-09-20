@@ -1,0 +1,68 @@
+{% load otree_tags staticfiles %}
+
+<div class="instructions well well-lg">
+
+    <div>
+        <p>
+            この問題では，あなたが全く知らない誰かと2人組になっている状況を想定してください．<br>
+            以下には，その相手のことを<strong>「誰か」</strong>と表示します．<br>
+        </p>
+        <p>
+            これから、「Ａ」と「Ｂ」との２つの選択肢のペアを何度かを表示します．そのうちの「Ａ」か「Ｂ」のどちらを選ぶかをおたずねします．<br>
+            そのどちらを選ぶかで，あなたと「誰か」が、お金を手に入れたり失ったりします．
+
+            いずれの質問についても，どの配分の組み合わせがあなたにとって最も望ましいのか，
+            <strong>A，Bの2つの選択肢の中から1つを選んで下さい．</strong><br>
+            最後に，全ての問題について決定を終えたら「次へ」ボタンを押してください．<br>
+            なお，ここでは<strong>"-"と書かれている場合は，その分のお金を失う状況を示しています．</strong>
+
+        </p>
+    </div>
+
+    <div>
+
+        <p>
+            以下の例では，ある人が1000ポイントを受け取り，「誰か」が500ポイントを失うように分配した状況を示しています．<br>
+            ある人はB列を選んでいます．あなたはあなたが受け取るポイントと「誰か」が受け取るポイントを決定することになります．<br>
+        </p>
+
+        <p>
+            この問題に対して正解も間違いもありません．あなたが最も望ましいと思う選択肢を選んで下さい．<br>
+        </p>
+
+        <p>
+            全てを決め終えた後，<strong>画面の下にある「続ける」ボタンを必ず押して下さい．</strong><br>
+            そうすると，次の画面に進みます．<br>
+            なお，このインストラクションは，回答画面では下部に表示しています．もし，わからないことがあれば適宜ご確認ください．
+        </p>
+
+    </div>
+
+    <div class="rm-item" align="center" style="margin-top: 2em; margin-bottom: 2em;">
+        <table>
+            <tr>
+                <th class="rm-cell"><!--EXAMPLE：-->例</th>
+                <th class="rm-cell rm-choice"><strong>A</strong></th>
+                <th class="rm-cell rm-choice"><strong>B</strong></th>
+            </tr>
+            <tr>
+                <td class="rm-cell"><strong><!--You receive：-->あなたの取り分</strong></td>
+                <td class="rm-cell rm-choice">1000</td>
+                <td class="rm-cell rm-choice">500</td>
+            </tr>                                    <tr>
+            <td class="rm-cell"><strong><!--Other receives：-->「誰か」の取り分</strong></td>
+            <td class="rm-cell rm-choice">-500</td>
+            <td class="rm-cell rm-choice">500</td>
+        </tr>
+            <tr>
+                <td class="rm-cell"></td>
+                <td class="rm-cell rm-choice"><input type="radio" disabled="True" checked="True" /></td>
+                <td class="rm-cell rm-choice"><input type="radio" disabled="True" /></td>
+            </tr>
+        </table>
+    </div>
+
+
+</div>
+
+

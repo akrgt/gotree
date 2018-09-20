@@ -1,0 +1,31 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+ <!--
+    Your Choice
+ -->
+	あなたの選択
+{% endblock %}
+
+{% block content %}
+
+<!--
+<p>
+You are Participant B. Participant A sent you {{group.sent_amount}} and you received {{tripled_amount}}. Now you have {{tripled_amount}}. How many points will you send to participant A?
+</p>
+
+-->
+
+
+<p>
+あなたはプレイヤーBです．プレイヤーAが{{group.sent_amount}}を提供しました．
+その結果，あなたは3倍された{{tripled_amount}}をもらいました．
+あなたはプレイヤーAにいくら渡しますか？
+</p>
+
+    {% formfield group.sent_back_amount with label=prompt %}
+    <p>{% next_button %}</p>
+    {% include Constants.instructions_template %}
+
+{% endblock %}

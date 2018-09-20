@@ -1,0 +1,51 @@
+{% load otree_tags staticfiles %}
+
+<div class="instructions well well-lg">
+
+    <h3 class="panel-sub-heading">
+        インストラクション
+    </h3>
+
+<!--
+    <p>
+        You have been randomly and anonymously paired with another participant.
+        One of you will be selected at random to be participant A;
+        the other will be participant B.
+        You will learn whether you are participant A or B prior to making any
+        decision.
+    </p>
+
+-->
+
+    <p>
+        あなたはランダムに，誰かわからないように他の人とペアになります．
+        そのペアのうち，1人はプレイヤーAになります．そして，もう1人はプレイヤーBになります．
+        あなたは意思決定をする前に，プレイヤーAになるか，プレイヤーBになるのかを決められます．
+    </p>
+
+<!--
+    <p>
+        To start, participant A receives {{ Constants.amount_allocated }};
+        participant B receives
+        nothing.
+        Participant A can send some or all of
+        his {{ Constants.amount_allocated }} to participant B.
+        Before B receives these points they will be multiplied
+        by {{ Constants.multiplication_factor }}. Once B receives
+        the tripled points he can decide to send some or all of his points to
+        A.
+    </p>
+
+-->
+
+
+    <p>
+        はじめに, プレイヤーAは {{ Constants.amount_allocated }}を受け取ります．
+        そして，プレイヤーBは何も受け取りません，
+        プレイヤーAは{{ Constants.amount_allocated }}の中から，全部，もしくは一部を
+        プレイヤーBに渡すことができます．
+        プレイヤーBに渡される前に，プレイヤーBが受け取る予定のポイントは {{ Constants.multiplication_factor }}倍になります．
+        プレイヤーBは{{ Constants.multiplication_factor }}倍されたポイントを受け取ったら，
+        そのうち何ポイントをプレイヤーAに返すかを決めます．
+    </p>
+</div>

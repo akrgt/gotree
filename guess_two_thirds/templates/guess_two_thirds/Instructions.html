@@ -1,0 +1,44 @@
+{% load otree_tags staticfiles %}
+
+<div class="instructions well well-lg">
+
+    <h3 class="panel-sub-heading">
+        インストラクション／Instructions
+    </h3>
+
+    <p>
+        あなたは {{ Constants.players_per_group }} 人グループにいます．
+        みなさんそれぞれに，0から {{ Constants.guess_max }}の間で数字を推測してもらいます．
+        勝者は全参加者が提案した数字の平均の"2/3"を選んだ人です．
+    </p>
+
+
+
+    <p>
+        You are in a group of {{ Constants.players_per_group }} people.
+        Each of you will be asked to choose a
+        number between 0 and {{ Constants.guess_max }}.
+        The winner will be the participant whose
+        number is closest to 2/3 of the
+        average of all chosen numbers.
+    </p>
+
+    <p>
+        勝った人は {{ Constants.jackpot }}を受け取ります．
+        引き分けの場合は，{{ Constants.jackpot }}を各勝者に平均して
+        分配します．
+    </p>
+
+
+    <p>
+        The winner will receive {{ Constants.jackpot }}.
+        In case of a tie, the {{ Constants.jackpot }}
+        will be equally divided among winners.
+    </p>
+
+    <p>このゲームは {{ Constants.num_rounds }} 期繰り返されます．</p>
+
+
+    <p>This game will be played for {{ Constants.num_rounds }} rounds.</p>
+
+</div>

@@ -1,0 +1,24 @@
+
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %} 支払画面 {% endblock %}
+
+
+{% block content %}
+
+<p>
+    これは1グループが{{ Constants.players_per_group }}名となる公共財ゲームです．<br>
+    初期保有額は{{ Constants.endowment }}であり，<br>
+    各グループの貢献額が{{ Constants.efficiency_factor }}倍されたものが<br>
+    グループの人数である{{ Constants.players_per_group }}で割られて，各プレイヤーに返されます．<br>
+
+    したがって，各プレイヤーの獲得額は{{ Constants.endowment }}-（各プレイヤーの貢献）ポイント+（各プレイヤーの貢献額の合計）×{{ Constants.efficiency_factor }}/{{ Constants.players_per_group }}として算出されます．
+
+</p>
+
+{% formfield player.contribution with label="あなたはいくら支払いますか？" %}
+
+{% next_button %}
+
+{% endblock %}

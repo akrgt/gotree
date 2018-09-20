@@ -1,0 +1,62 @@
+{% load otree_tags staticfiles %}
+
+<div class="instructions well well-lg">
+
+    <p>この実験は2つのステージからなります：</p>
+    <ul>
+        <li>
+            <p>
+                <b>ステージ1</b>の最初に，あなたは {{ Constants.players_per_group }}人グループに割り振られ，<strong>{{ Constants.endowment|c }}</strong>を
+                受け取ります．
+                グループのメンバーと一緒にとあるプロジェクトを行ってもらいます．
+                グループの参加者の皆さんには，いくらをグループに貢献するのかを決定してもらいます．
+                貢献額は<strong>0ポイントから{{ Constants.endowment|c }}</strong>の間で決めてもらいます．
+            </p>
+            <p>
+                そのプロジェクトからの収益は以下の通り計算されます．：
+                グループ<strong>{{ Constants.players_per_group }}</strong>人の貢献額を合計します．
+                そして，その合計額を<strong>{{ Constants.efficiency_factor }}</strong>倍にします．
+                その{{ Constants.efficiency_factor }}倍された合計額はグループ<strong>{{ Constants.players_per_group }}</strong>人で分配されます．
+                あなたの収益はこのプロジェクトから得られた額と，貢献しなかった額を合計した額になります．
+
+            </p>
+            <!--
+            <p>
+                In the beginning of the <b>first</b> stage each round every participant in your group
+                of {{ Constants.players_per_group }}
+                receives <strong>{{ Constants.endowment|c }}</strong>. The group
+                has the opportunity to undertake a joint project. Each participant in
+                the group decides how much she or he is going to contribute to
+                the project. Contribution could be any integer from <strong>0
+                to {{ Constants.endowment|c }}</strong>.
+            </p>
+            <p>
+                The earnings from the project are calculated as follows: The
+                contributions of all <strong>{{ Constants.players_per_group }}</strong> participants are
+                added up, the total contribution
+                is multiplied by a factor of <strong>{{ Constants.efficiency_factor }}</strong>, and the
+                resulting amount is the total earnings from the project, which is
+                evenly split among all <strong>{{ Constants.players_per_group }}</strong>
+                participants. Your payoff equals your earnings from the project, plus
+                the amount you did not contribute.
+            </p>
+            -->
+        </li>
+        <li>
+            第2ステージでは，同じグループのメンバーの意思決定の結果を見ることができます．
+            そして，あなたの収益から<strong>{{ Constants.punishment_endowment }}ポイント</strong>まで支払うことができます．
+            1ポイントをあなたの利益から支払うと，他の参加者の利益を{{ Constants.punishment_factor }}ポイントまで減らすことができます．
+
+        </li>
+<!--
+        <li>
+            In the second stage you can see the decisions and other participants in the your group,
+            You can transfer up to <strong>{{ Constants.punishment_endowment }} points </strong> from your endowment to
+            decrease the
+            income of these
+            participants. By transferring 1 point from your endowment you decrease the income of another
+            participant by {{ Constants.punishment_factor }} points.
+        </li>
+-->
+    </ul>
+</div>

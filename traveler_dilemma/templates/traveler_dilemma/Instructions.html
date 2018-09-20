@@ -1,0 +1,67 @@
+{% load otree_tags staticfiles %}
+
+<div class="instructions well well-lg">
+
+    <h3 class="panel-sub-heading">
+        インストラクション／Instructions
+    </h3>
+
+
+    <p>
+        あなたは全く知らない他のプレイヤーとランダムにペアになりました．
+        以下の状況を想像して下さい．
+    </p>
+
+    <p>
+        You have been randomly and anonymously paired with another participant.
+        Now please image the following scenario.
+    </p>
+
+
+    <p>
+        あなたと相手のプレイヤーは遠い離島から戻ってきた旅人であり，どちらも同じ骨董品を買ってきました．
+        不幸にも，あなたは飛行機会社がその骨董品を雑に扱っていて，壊してしまったのを見つけました．
+        航空会社の責任者が．相当額の弁償をすることを約束しました．
+        航空会社の責任者は骨董品の本当の価値を知らずに，以下の金額を提案してきました．
+        あなたがた2人は同時に，かつ独立（バラバラ）に価値が{{ Constants.min_amount }} から {{ Constants.max_amount }}であると評価しました．
+    </p>
+
+    <p>
+        You and another traveler (the other participant) just returned from a
+        remote island where both of you bought the same antiques.
+        Unfortunately, you discovered that your airline managed to smash the
+        antiques, as they always do. The airline manager assures you of
+        adequate compensation. Without knowing the true value of your antiques,
+        he offers you the following scheme. Both of you simultaneously and
+        independently make a claim for the value of your own antique (ranging
+        from {{ Constants.min_amount }} to {{ Constants.max_amount }}):
+    </p>
+
+        <ul>
+        <li>
+            もし2人が同じ評価額であれば，そのままの金額が支払われます，
+        </li>
+        <li>
+            もし2人が違う評価額を提案したならば，その時は2人の評価額の中で低い額が支払われます．
+            さらに，低い評価額を提案した人には追加で{{ Constants.adjustment_abs }}を受け取ることができ，
+            高い評価額を提案した人は罰金として{{ Constants.adjustment_abs }}を没収されます．
+        </li>
+    </ul>
+
+
+
+
+
+    <ul>
+        <li>
+            If both claim the same amount, then this amount will be paid to
+            both.
+        </li>
+        <li>
+            If you claim different amounts, then the lower amount will be paid
+            to both. Additionally, the one with lower claim will receive a
+            reward of {{ Constants.adjustment_abs }}; the one with higher claim will
+            receive a penalty of {{ Constants.adjustment_abs }}.
+        </li>
+    </ul>
+</div>
