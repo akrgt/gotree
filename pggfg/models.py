@@ -82,6 +82,6 @@ class Player(BasePlayer):
 
 
 class Punishment(djmodels.Model):
-    sender = djmodels.ForeignKey(to=Player, related_name='punishments_sent')
-    receiver = djmodels.ForeignKey(to=Player, related_name='punishments_received')
+    sender = djmodels.ForeignKey(to=Player, on_delete=models.CASCADE, related_name='punishments_sent')
+    receiver = djmodels.ForeignKey(to=Player, on_delete=models.CASCADE, related_name='punishments_received')
     amount = models.IntegerField(null=True, )

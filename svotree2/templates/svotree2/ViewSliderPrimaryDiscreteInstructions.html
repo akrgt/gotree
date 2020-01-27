@@ -1,0 +1,18 @@
+{% extends "svotree/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+インストラクション
+{% endblock %}
+
+{% block content %}
+
+    {% include Constants.instructions_slider with type="discrete" %}
+
+    <button class="btn btn-primary btn-large" id="continue_button" ><!--Continue-->続ける</button>
+
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

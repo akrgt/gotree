@@ -32,7 +32,7 @@ Real Effort Taskです．可能な限り文字を入力してください．
 class Constants(BaseConstants):
     name_in_url = 'task_typing'
     players_per_group = None
-    task_timer = 120 #see Subsession, before_session_starts setting. 
+    task_timer = 30 #see Subsession, before_session_starts setting. 
     num_rounds = 100 # must be more than the max one person can do in task_timer seconds
 
 
@@ -189,9 +189,9 @@ class Player(BasePlayer):
         if (self.correct_text == self.user_text):
             self.is_correct = True
             self.payoff_score = 1
-        else: 
+        else:
             self.is_correct = False
-            self.payoff_score = c(0)      
+            self.payoff_score = 0
 
 
     task_timer = models.PositiveIntegerField(

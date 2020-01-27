@@ -40,9 +40,7 @@ class Group(BaseGroup):
         verbose_name='私は( 0 から %i )ポイントを自分の利益とします．' % Constants.endowment
     )
 
-
-
-#I will keep (from 0 to %i)
+# I will keep (from 0 to %i)
     def set_payoffs(self):
         p1 = self.get_player_by_id(1)
         p2 = self.get_player_by_id(2)

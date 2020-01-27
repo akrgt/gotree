@@ -54,14 +54,13 @@ class Group(BaseGroup):
                 p.payoff += (p.private_value - self.second_highest_bid)
 
 
-
 class Player(BasePlayer):
     private_value = models.CurrencyField(
         doc="How much the player values the item, generated randomly"
     )
 
     bid_amount = models.CurrencyField(
-        min=0, max=Constants.endowment,
+        min=c(0), max=Constants.endowment,
         doc="Amount bidded by the player"
     )
 

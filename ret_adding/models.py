@@ -33,10 +33,10 @@ Real Effort Task. 可能な限り整数を足す
 class Constants(BaseConstants):
     name_in_url = 'task_sum'
     players_per_group = None
-    task_timer = 120 #see Subsession, before_session_starts setting. 
+    task_timer = 30 #see Subsession, before_session_starts setting.
     num_rounds = 100 # must be more than the max one person can do in task_timer seconds
 
-    INTS_T1 = [ 
+    INTS_T1 = [
     [   90  ,   95  ]   ,
     [   14  ,   19  ]   ,
     [   35  ,   50  ]   ,
@@ -264,9 +264,9 @@ class Player(BasePlayer):
         if (self.solution == self.user_total):
             self.is_correct = True
             self.payoff_score = 1
-        else: 
+        else:
             self.is_correct = False
-            self.payoff_score = c(0)      
+            self.payoff_score = 0
 
 
 

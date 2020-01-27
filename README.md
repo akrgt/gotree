@@ -1,203 +1,82 @@
-# oTree 1.0
+# 明治大学行動経済学研究所
+## 概要
+oTreeの改修中です.
+何らかの改変を行ったプログラムは先頭に「(改)」を、  
+改変が不要な場合は「（未改変）」をそれぞれ付け  
+リストの上に並べ替えています.
 
-oTree is a framework based on Python and Django that lets you build:
+### 疑問点
+全ページ表示後の「Finished」と表示される画面（OutOfRangeNotification.html）で  
+日本語が「これ以上表示するページはりません」となる件ですが  
+otree本体の日本語訳が間違っているのが問題のようです.  
+ファイルの場所は仮想環境下で  
+\Lib\site-packages\otree\locale\ja\LC_MESSAGES\django.po
+にあります.  
+ただ、ここを書き換えても表示は直らないんですよね...
 
-- Multiplayer strategy games, like the prisoner's dilemma, public goods game, and auctions
-- Controlled behavioral experiments in economics, psychology, and related fields
-- Surveys and quizzes
+ストラテジーメソッドと直接応答法が混ざっている最終提案ゲーム  
+動いていますが、意図する実験になっているか不明なので保留します.
 
-## Live demo
-http://demo.otree.org/
+social value orientation  
+ボタンが押せるようになるまでの時間が長いので、意図しない動作ならば修正対象になるかもしれません.
 
-## Homepage
-http://www.otree.org/
+Principal Agent  
+rejectする際もeffortの選択をしないと進行できないバグがあるので、分かり次第修正したいです.
 
-## Docs
+lemon_market  
+class Groupとclass Playerでseller_idが2度使われているので,Group側をbought_id(買われたid)と変更して調整中です.
 
-http://otree.readthedocs.org
+### 改修点
+#### pggfg/pggfg5  
+起動しない理由として
+models.pyのsender receiverのパラメータに"on_delete"が抜けていました.
+(Djangoのバージョン違いによるバグかもしれません.)
 
-## Quick start
+#### ret_adding  
+class Player(BasePlayer)/def score_round内
+self.payoff_score を c(0)から 0に型変更.
+デバッグ用に実験時間を30秒に変更中.
 
-Rather than cloning this repo directly,
-run these commands:
+#### ret_typing  
+同上  
+時間切れ後の読み込みが400ページ全部読み込んでるような動作っぽいので  
+軽量化できるポイントかもです.  
 
-```
-pip3 install -U otree-core
-otree startproject oTree
-otree resetdb
-otree runserver
-```
+#### survey  
+models.py/class Player/def set_payoffに　q_countryを追加.  
+文言を'あなたの出身国を教えて下さい'に設定.
 
-## Example game: guess 2/3 of the average
+#### real_effort
+Results.htmlに next_button を追加
 
-Below is a full implementation of the
-[Guess 2/3 of the average](https://en.wikipedia.org/wiki/Guess_2/3_of_the_average) game,
-where everyone guesses a number, and the winner is the person closest to 2/3 of the average.
-The game is repeated for 3 rounds.
-You can play the below game [here](http://otree-demo.herokuapp.com/demo/guess_two_thirds/).
+#### repeat_prisoner
+vies.py/class Introduction にis_displayedを追加.
+(1ラウンド目にだけ説明文が表示されるように変更)
 
-### models.py
+#### dictator
+templates/dictator/Results.htmlのプレイヤー2の利益を
+offer(pages.py/class Resultsの'offer')に変更することでエラーを回避.
 
-```python
-from otree.api import (
-    models, widgets, BaseConstants, BaseSubsession, BaseGroup, BasePlayer,
-    Currency
-)
+#### dictator10
+repeat_dictatorを削除.
+dictatorフォルダを複製してdictator10を作成.
+models.py/class Constants/name_in_url を'dictator10'に
+(dictatorのままだと競合してエラーが出ました)
+pages.py/class Introductionに is_displayedを追加.
 
-class Constants(BaseConstants):
-    players_per_group = 3
-    num_rounds = 3
-    name_in_url = 'guess_two_thirds'
+#### ultimatum/ultimatum10
+繰り返し用のアプリケーションultimatum10を作成.
+treatmentの条件分岐で実験のラウンド数を変更できればアプリケーションが1個で済むのですが、いまのところ方法がみつかりません.
 
-    jackpot = Currency(100)
-    guess_max = 100
+#### trust_simple
+instructions_templateの項目が抜けていたので設定しエラーを回避.
 
+#### vickrey_auction
+入力フィールドが表示されなかったため、表記を書き換えて簡略化.
+必要な入力形式(選択式,スライドバーetc)等ありましたらまた作り直します.
 
-class Subsession(BaseSubsession):
-    pass
+#### svotree2
+svotreeのtemplatesフォルダを'svotree2'としてコピー
 
-
-class Group(BaseGroup):
-    two_thirds_avg = models.FloatField()
-    best_guess = models.PositiveIntegerField()
-    num_winners = models.PositiveIntegerField()
-
-    def set_payoffs(self):
-        players = self.get_players()
-        guesses = [p.guess for p in players]
-        two_thirds_avg = (2 / 3) * sum(guesses) / len(players)
-        self.two_thirds_avg = round(two_thirds_avg, 2)
-
-        self.best_guess = min(guesses,
-            key=lambda guess: abs(guess - self.two_thirds_avg))
-
-        winners = [p for p in players if p.guess == self.best_guess]
-        self.num_winners = len(winners)
-
-        for p in winners:
-            p.is_winner = True
-            p.payoff = Constants.jackpot / self.num_winners
-
-    def two_thirds_avg_history(self):
-        return [g.two_thirds_avg for g in self.in_previous_rounds()]
-
-
-class Player(BasePlayer):
-    guess = models.PositiveIntegerField(max=Constants.guess_max)
-    is_winner = models.BooleanField(initial=False)
-```
-
-### views.py
-
-```python
-from . import models
-from otree.api import Page, WaitPage
-
-
-class Introduction(Page):
-    def is_displayed(self):
-        return self.round_number == 1
-
-
-class Guess(Page):
-    form_model = models.Player
-    form_fields = ['guess']
-
-
-class ResultsWaitPage(WaitPage):
-    def after_all_players_arrive(self):
-        self.group.set_payoffs()
-
-
-class Results(Page):
-    def vars_for_template(self):
-        sorted_guesses = sorted(p.guess for p in self.group.get_players())
-
-        return {'sorted_guesses': sorted_guesses}
-
-
-page_sequence = [Introduction,
-                 Guess,
-                 ResultsWaitPage,
-                 Results]
-```
-
-### HTML templates
-
-[Instructions.html](https://github.com/oTree-org/oTree/blob/master/guess_two_thirds/templates/guess_two_thirds/Instructions.html)
-[Introduction.html](https://github.com/oTree-org/oTree/blob/master/guess_two_thirds/templates/guess_two_thirds/Introduction.html)
-[Guess.html](https://github.com/oTree-org/oTree/blob/master/guess_two_thirds/templates/guess_two_thirds/Guess.html)
-[Results.html](https://github.com/oTree-org/oTree/blob/master/guess_two_thirds/templates/guess_two_thirds/Results.html)
-
-### tests.py (optional)
-
-Test bots for multiplayer games run in parallel, 
-and can run either from the command line,
-or in the browser, which you can try [here](http://otree-demo.herokuapp.com/demo/matching_pennies_bots/).
-
-```python
-
-from otree.api import Bot, SubmissionMustFail
-from . import views
-from .models import Constants
-
-class PlayerBot(Bot):
-    cases = ['p1_wins', 'p1_and_p2_win']
-
-    def play_round(self):
-        if self.subsession.round_number == 1:
-            yield (views.Introduction)
-
-        if self.case == 'p1_wins':
-            if self.player.id_in_group == 1:
-                for invalid_guess in [-1, 101]:
-                    yield SubmissionMustFail(views.Guess, {"guess": invalid_guess})
-                yield (views.Guess, {"guess": 9})
-                assert self.player.payoff == Constants.jackpot
-                assert 'you win' in self.html
-            else:
-                yield (views.Guess, {"guess": 10})
-                assert self.player.payoff == 0
-                assert 'you did not win' in self.html
-        else:
-            if self.player.id_in_group in [1, 2]:
-                yield (views.Guess, {"guess": 9})
-                assert self.player.payoff == Constants.jackpot / 2
-                assert 'you are one of the 2 winners' in self.html
-            else:
-                yield (views.Guess, {"guess": 10})
-                assert self.player.payoff == 0
-                assert 'you did not win' in self.html
-
-        yield (views.Results)
-```
-
-See docs on [bots](http://otree.readthedocs.io/en/latest/bots.html).
-
-
-## Features 
-
-- Extensive admin interface for launching games & surveys, managing participants, monitoring data, etc.
-- Flexible API, e.g. for [group re-matching](http://otree.readthedocs.io/en/latest/groups.html#group-matching)
-- Publish your games to [Amazon Mechanical Turk](http://otree.readthedocs.io/en/latest/mturk.html)
-
-
-## Contact & support
-
-[Help & discussion mailing list](https://groups.google.com/forum/#!forum/otree)
-
-Contact chris@otree.org with bug reports.
-
-## Contributors
-
-* Gregor Muellegger (http://gremu.net/, https://github.com/gregmuellegger)
-* Juan B. Cabral (http://jbcabral.org/, https://github.com/leliel12)
-* Bertrand Bordage (https://github.com/BertrandBordage)
-* Alexander Schepanovski (https://github.com/Suor/)
-* Alexander Sandukovskiy
-* Som Datye
-
-
-## Related repositories
-
-The oTree core libraries are [here](https://github.com/oTree-org/otree-core).
+#### principal_agent
+views.py/class Accept下のvars_for_templateにreturn_share,fixed_pay_intを加えてエラーを回避.

@@ -1,14 +1,14 @@
-{% extends "global/BaseMotherhood.html" %}
+{% extends "global/Base.html" %}
 {% load staticfiles otree_tags %}
 
 {% block title %}
-    Task 
+    Task
 {% endblock %}
 
 
 
 {% block content %}
- 
+
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;border:none;margin:0px auto;}
 .tg td{font-family:Arial, sans-serif;font-size:14px;padding:5px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;}
@@ -22,7 +22,8 @@
 </style>
 <table class="tg" width="800">
   <tr>
-    <th class="tg-s6z2" colspan="4"><h2>Please sum the following numbers into the field below <br>and then click <b>Next</b> or press the <b>Enter</b> key.<h3>
+    <!-- <th class="tg-s6z2" colspan="4"><h2>Please sum the following numbers into the field below <br>and then click <b>Next</b> or press the <b>Enter</b> key.<h3> -->
+    <th class="tg-s6z2" colspan="4"><h2>2つの数字を足し、以下の空欄に入れてください. <br><b>次へ</b>をクリックするか<br><b>エンターキー</b>を叩いてください.<h3>
         <br><br>
     </th>
   </tr>
@@ -35,8 +36,8 @@
   <tr>
     <td class="tg-yw4l" colspan="2" width="50%">
         <h2>{% autoescape off %}  {{correct_last_round}}   {% endautoescape %}
-        <h2>Score: {{ total_payoff }}
-        <h2>Attempt {{ round_count }} 
+        <h2>得点: {{ total_payoff }}
+        <h2>回答数 {{ round_count }}
         </h2>
     </td>
   </tr>

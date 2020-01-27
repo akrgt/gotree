@@ -1,0 +1,34 @@
+{% extends "global/Base.html" %}
+{% load otree_tags %}
+
+{% block title %}
+     {{ Constants.num_rounds }}期中{{ subsession.round_number }}期目の購入／Purchase (Period {{ subsession.round_number }} of {{ Constants.num_rounds }})
+{% endblock %}
+
+{% block content %}
+<p>あなたは買い主です．</p>
+<p>You are buyer.</p>
+<p>
+    <strong>以下には売り主のリストを表示します．</strong><br/>
+    {% for p in group.get_players %}
+    {% if 'seller' in p.role %}
+    <i>{{p.role}}からの販売額： {{p.seller_proposed_price}}</i><br/>
+    {% endif %}
+    {% endfor %}
+</p>
+<p>
+    <strong>Below are the listed prices from the sellers:</strong><br/>
+    {% for p in group.get_players %}
+    {% if 'seller' in p.role %}
+    <i>Price from {{p.role}}: {{p.seller_proposed_price}}</i><br/>
+    {% endif %}
+    {% endfor %}
+</p>
+
+{% formfield group.bought_id with label="購入判断をして下さい／Please make a purchase decision:" %}
+
+{% next_button %}
+
+{% include Constants.instructions_template %}
+
+{% endblock %}

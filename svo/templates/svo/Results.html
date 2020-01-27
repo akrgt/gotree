@@ -1,0 +1,32 @@
+{% extends "global/Base.html" %}
+{% load i18n %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    {% blocktrans trimmed %}社会的価値指向性の結果{% endblocktrans %}
+{% endblock %}
+
+{% block content %}
+    <p>
+    {% blocktrans trimmed %}あなたは{% endblocktrans %} {{subsession.select_items}} Primary or Primarz and Secondary {% blocktrans trimmed %}課題に回答しました．{% endblocktrans %}</br>
+    もしランダムマッチングの独裁者ゲームであった場合，あなたはランダムに分配者と受取者に割り振られます．</br>
+        そして，slider Xが報酬決定に用いられます．</br>
+
+        {% blocktrans trimmed %}あなたの報酬：{% endblocktrans %} {{ player.payoff }}.</br></br>
+
+
+    もしリングマッチングであった場合，Slider Xが報酬決定に用いられます．</br>
+        あなたが受取者に割り振られた場合，あなたはXポイントを受け取ります．</br>
+        もし分配者に割り振られた場合，Zポイントを受け取ります．</br></br>
+        {% blocktrans trimmed %}あなたの報酬：{% endblocktrans %} {{ player.payoff }}.
+
+    <br> {% blocktrans trimmed %}あなたの社会的価値指向性アングル：{% endblocktrans %}  {{player.svo_angle}}.
+    <br> {% blocktrans trimmed %}あなたの社会的価値指向性：{% endblocktrans %} {{player.svo_type}}.
+    If Primary and Secondary
+        <br> {% blocktrans trimmed %}あなたの不平等回避スコア： {% endblocktrans %} {{player.inequality_aversion_score}}.
+
+    </p>
+    {% next_button %}
+{% endblock %}
+
+

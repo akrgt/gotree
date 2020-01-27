@@ -28,36 +28,3 @@
     {% include Constants.instructions_template %}
 
 {% endblock %}
-
-{% block scripts %}
-
-<script>
-$(function() {
-        $('#effort').hide();
-        $('input[type=radio]').change(function(){
-            if ($('#id_contract_accepted_1').prop('checked'))
-            $('#effort').show();
-            else
-            $('#effort').hide();
-            });
-        });
-        $('input[type=radio]').change(function(){
-            var effort;
-            if ($('#id_contract_accepted_1').prop('checked')) {
-                effort = $('input[name=agent_work_effort]:checked').val()
-                if (!effort) {
-                    $('p#calculate').text('');
-                    return;
-                }
-                //  [B's Return Share in %] × [Total Return] + [B's Fixed Payment] – [B's Effort Cost]
-                payoff = {{return_share}} * {{EFFORT_TO_COST}}[effort] / 100 + {{fixed_pay_int}} - {{EFFORT_TO_COST}}[effort];
-            } else {
-                effort = 'to reject';
-                payoff = 10;
-            }
-            $('p#calculate').text('You will receive '+payoff+' points if you choose '+effort+'.');
-        });
-</script>
-
-
-{% endblock %}
